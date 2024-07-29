@@ -1,0 +1,56 @@
+type Query {
+
+    categories: [Category!]
+    products: [Product!]
+    product(id: ID!): Product
+    category(id: ID!): Category
+    productsByCategory(categoryId: ID!): [Product!]!
+
+}
+
+type Category {
+
+    id: ID!
+    name: String
+    parentId: String!
+    image: String
+    description: String
+
+}
+
+type Product {
+    id: ID!
+    name: String
+	description: String
+	price: Float
+    category: Category!
+	stock: Int
+	image: String
+    badges: String
+    wishlist: Int
+}
+
+type Mutation{
+
+ createProduct(name:String,description:String,price:Float,stock:Int,image:String,badges:String,wishlist:Int):Product
+    #createProduct(input: CreateProductInput):Product
+ deleteProduct(id: ID!): Product
+ updateProduct(id: ID!, name: String,description: String,price: Float,stock: Int,image:String,badges:String,wishlist:Int):Product
+
+ createCategory(name:String,parentId:String,image:String,description:String):Category
+ deleteCategory(id: ID!): Category
+ updateCategory(id: ID!, name: String,parentId: String,image:String,description:String):Category
+ updateWishlistStatus(id: ID!, wishlist: Boolean!): Product!
+}
+
+input CreateProductInput {
+  name: String!
+  description: String
+  price: Float
+  stock: Int
+  image: String
+  status:Int
+}
+
+
+

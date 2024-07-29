@@ -1,0 +1,37 @@
+learning.udemy.com/course/graphql-by-example/learn/lecture/36699756#overview
+
+const defs = await \\\type Customer {
+    id: ID!
+    name: String
+    email : String
+    phoneNumber: Strings
+}
+
+
+
+
+const resolvers = {
+    Query: {
+        greeting : () => 'Hello Prasun !!!'
+    },
+    Product: {
+        code : () => '100',
+        name : () => 'Test',
+        available : () => 'no' 
+    }
+};
+
+export const resolvers = {
+    Query: {        
+        Product:()=> {
+            return {
+                name : 'Prasun Sarangi',
+                email :'prasun.sarangi@ibm.com',
+                availableFrom :'12/06/2024'
+            }
+        }
+    }
+};
+
+Scalar types : OOTB : Int, String, Boolean, Float, ID (intended not for human read), Date
+! means the attribute is mendatory

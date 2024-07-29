@@ -1,0 +1,13 @@
+{
+	"folders": [
+		{
+			"path": "graphql-commerce-app"
+		},
+		{
+			"path": "react-commerce-app"
+		},
+		{
+			"path": "my-commerce-app"
+		}
+	]
+}

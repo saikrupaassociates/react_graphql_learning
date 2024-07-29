@@ -1,0 +1,71 @@
+    type Query {
+        product(code: ID!) : Product
+        category(code: ID!): Category     
+        products: [Product]        
+        categories: [Category] 
+        rootCategories: [Category]
+        childCategories(code: ID!): [Category]
+        getProductsByCategoryCode(categoryCode: ID!) : [Product]
+        getAllStocks: [ProductStock]
+        getStockByProductCode(productCode: ID!) : ProductStock
+        getPriceByProductCode(productCode: ID!) : ProductPrice
+    }    
+
+    type Product {
+        code: ID!
+        title: String
+        decription: String
+        price: ProductPrice!        
+        active: Boolean
+        superCategories: [Category]
+        stockStatus: StockStatus!
+        imageUrl: String
+        wishlist: Boolean
+        badgeString: String
+    }
+    type Category {
+        code: ID
+        name: String
+        parentCategory: Category        
+        imageUrl: String
+        active: Boolean        
+    }
+    enum StockStatus {
+        INSTOCK
+        OUTOFSTOCK
+    }
+    type ProductStock {
+        productCode: ID!
+        stockLevel: Int!
+        forceInStock: Boolean
+    }
+    enum CurrencyCodeEnum {
+        INR
+        USD
+        GBP
+    }
+
+    type ProductPrice {
+        productCode: ID!
+        price: Float!
+        currency: CurrencyCodeEnum
+    }    
+
+    type Mutation {
+        createCategory(            
+            name: String!,
+            categoryUrl: String!,
+            active: Boolean,
+            parentCategoryCode: String
+        ): Category
+
+        updateStock(            
+            productCode: ID!,
+            stockLevel: Int!,
+            forceInStock: Boolean            
+        ): ProductStock
+
+        updateWishlistStatusForProduct(
+            code: ID!, wishlist: Boolean!): Product!
+
+    }

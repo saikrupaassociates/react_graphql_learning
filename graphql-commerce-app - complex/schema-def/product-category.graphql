@@ -1,0 +1,53 @@
+    type Query {
+        product(code: ID!) : Product
+        # isActiveCategory(code: ID!) : Boolean        
+        category(code: ID!): Category     
+        products: [Product]        
+        categories: [Category] 
+        rootCategories: [Category]
+
+        Category2Product: [Category2Product]
+        # productsByCategory(categoryCode: ID!): [Product]
+        # superCategories(productCode: ID!): [Category]
+    }    
+
+    type Product {
+        code: ID!
+        title: String
+        decription: String
+        price: Float!        
+        active: Boolean
+        category: Category
+        stock: Int!
+        image: String
+    }
+
+    type Category {
+        code: ID
+        name: String
+        parentCategory: Category        
+        categoryUrl: String
+        active: Boolean        
+    }
+
+    type Category2Category {
+        code: ID!
+        parentCategory: Category
+        childCategories: [Category]
+    }
+
+    type Category2Product {
+        code: ID!
+        category: Category
+        products: [Product]
+    }    
+
+    type Mutation{
+        createCategory(            
+            name: String!,
+            categoryUrl: String!,
+            active: Boolean,
+            parentCategoryCode: String
+        ): Category
+
+    }

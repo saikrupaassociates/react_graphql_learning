@@ -1,0 +1,104 @@
+react: for UI development
+javascript library - virtual DOM
+what is EA 6?
+
+----------------------------------------------------------
+class Car {
+	constructor(carType) {
+		this.carType = carType;
+	}
+	
+	showCarType() {
+		return "Car Type : "+this.carType;
+	}
+}
+
+const myCar = new Car("Hatchback");
+console.log("My Car is of Type : "+myCar.showCarType());
+----------------------------------------------------------
+Arrow Function:
+hello = () => "Hello World";
+
+hello = (value) => {
+	return "Hello - "+value;
+}
+console.log(hello("Prasun !!!"));
+
+hello = (value1, value2) => {
+	return "Hello - "+value1+" :: "+value2;
+}
+console.log(hello("Prasun !!!", "Nice"));
+----------------------------------------------------------
+Variable declaration : var, let, const
+var - scope is always global. 
+let is specific to a function.
+const can not be reassigned. but can be modified. 
+var test = "Hello World";
+hello = () => {
+	console.log(test);
+}
+------------------------------------------------------------
+Array, Map
+const nums = [1,2,3];
+const squareNums = nums.map(num => num * num);
+console.log(squareNums);
+
+const people = [
+	{id: 1, name= "person1"},
+	{id: 2, name= "person2"}
+]
+const pNames = people.map(person => person.name); 
+console.log(pNames);
+
+const pNames = people.map(function(person) {
+	return person.name;
+}); 
+console.log(pNames);
+------------------------------------------------------------
+De-structuring - Arrays, Object
+Arrays:
+
+Object:
+
+const person = {
+	fName: "Prasun", 
+	lName: "Sarangi"
+}
+console.log(person.fName);
+------------------------------------------------------------
+Spread Operator : Copying the values of multiple arrays into a new Array
+const nums1 = [1,2,3];
+const nums2 = [1,2,3];
+const newNums = [...nums1, ...nums2];
+const [one, two, ...rest] = nums1;
+console.log(rest);
+
+Object - overrides the values.
+
+const person1 = {
+	fName: "Prasun", 
+	lName: "Sarangi",
+	email: "test1@test.com"
+}
+
+const person2 = {
+	fName2: "Prasun1", 
+	lName2: "Sarangi2",
+	email2: "test2@test.com"
+}
+//Copies the values of the objects to a new Object
+const result = {...person1, ...person2};
+console.log(result.email2);
+
+//Copies the values of the objects to a new Object as two attributes (person1 & person2)
+const result2 ={person1, person2};
+console.log(result2.person2.email2);
+
+
+npx create-react-app react-commerce-app 
+cd react-commerce-app
+npm start
+Opens browser at default port 3000
+
+
+

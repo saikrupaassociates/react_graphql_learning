@@ -1,0 +1,60 @@
+DROP DATABASE GRAPHQL_DB;
+CREATE DATABASE GRAPHQL_DB;
+USE GRAPHQL_DB;
+
+CREATE TABLE product_tab (
+	code INT NOT NULL PRIMARY KEY AUTO_INCREMENT,
+	title VARCHAR(200),
+	availableFrom VARCHAR(100),	
+	saleable char(1) not null
+) AUTO_INCREMENT=1000;
+
+CREATE TABLE vendor_tab (
+	code INT NOT NULL PRIMARY KEY AUTO_INCREMENT,
+	name VARCHAR(100) not null,
+	active char(1) not null
+) AUTO_INCREMENT=3000;
+
+CREATE TABLE vendor_product_tab (
+	code INT NOT NULL PRIMARY KEY AUTO_INCREMENT,
+	vendorCode int not null,
+	productCode int not null,
+	active char(1) not null,
+	FOREIGN KEY (vendorCode) REFERENCES vendor_tab(code) ON DELETE CASCADE ON UPDATE CASCADE,
+	FOREIGN KEY (productCode) REFERENCES product_tab(code) ON DELETE CASCADE ON UPDATE CASCADE
+) AUTO_INCREMENT=5000;
+
+create table price_tab (
+	code INT NOT NULL PRIMARY KEY AUTO_INCREMENT,
+	productCode INT NOT NULL,
+	price DOUBLE not null
+)AUTO_INCREMENT=1;
+
+
+
+
+
+INSERT INTO product_tab(title, availableFrom, saleable) VALUES('Samsung Mobile M56', '01-JAN-2024 12:10:222', 'T');
+INSERT INTO product_tab(title, availableFrom, saleable) VALUES('VIVO Mobile L67', '03-FEB-2024 12:10:222', 'T');
+INSERT INTO product_tab(title, availableFrom, saleable) VALUES('Samsung NEO LED 65 Inch', '05-MAR-2024 12:10:222', 'F');
+INSERT INTO product_tab(title, availableFrom, saleable) VALUES('Lenovo T95', '07-APR-2024 12:10:222', 'T');
+INSERT INTO product_tab(title, availableFrom, saleable) VALUES('Samsung NEO LED 85 Inch', '09-MAY-2024 12:10:222', 'F');
+
+
+insert into vendor_tab(name, active) values('Bharat Electronics', 'T');
+insert into vendor_tab(name, active) values('Reliance Digital', 'T');
+insert into vendor_tab(name, active) values('India Mobiles', 'T');
+insert into vendor_tab(name, active) values('Samsung Store', 'T');
+
+insert into price_tab(productCode, price) values((select code from product_tab where title='Samsung Mobile M56'), 21999.99);
+insert into price_tab(productCode, price) values((select code from product_tab where title='VIVO Mobile L67'), 14999.99);
+insert into price_tab(productCode, price) values((select code from product_tab where title='Samsung NEO LED 65 Inch'), 150999.99);
+insert into price_tab(productCode, price) values((select code from product_tab where title='Lenovo T95'), 59999.99);
+insert into price_tab(productCode, price) values((select code from product_tab where title='Samsung NEO LED 85 Inch'), 299999.99);
+
+
+
+
+
+
+makeExecutableSchema

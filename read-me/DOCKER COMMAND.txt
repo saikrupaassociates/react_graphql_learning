@@ -1,0 +1,31 @@
+-- To create a network
+docker network create mnp-poc-network //8ec75764935e
+docker network ls
+
+// Container ID : d5e31d6ff243
+#MYSQL_DATABASE=MNP
+docker container run --name mnp-db-container --network mnp-poc-network -e MYSQL_ROOT_PASSWORD=root123 -d mysql:8
+docker container run --name mnpocapp-container --network mnp-poc-network -d java:8
+docker container run --name mnpocapp-container --network mnp-poc-network -d jboss-eap-7.3:latest
+docker container run --name mnpocapp-container --network mnp-poc-network -d f50124fd21c1
+
+docker container ls
+docker container logs mysqldb-container //name of the container
+
+// to get inside the container
+docker container exec -it mysqldb-container bash
+
+
+//Copy scripts to mysql container (d5e31d6ff243)
+docker cp . d5e31d6ff243:/home/mnp-poc-scripts
+// to get inside mysql
+mysql -uroot -proot123
+
+
+
+
+#poc-app-container
+docker build -t mnp-poc-app:1.0 -f Dockerfile
+docker run -d -p 8080:8080 mnp-poc-app -i
+docker container exec -it mnp-poc-jboss bash
+
